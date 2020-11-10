@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Youtube collabo viewer</title>
+	<meta name="description" content="Youtube collabo viewer。自分用ツール。使うのは自由ですが説明はしません。" />
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="icon.png" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="icon.png" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+	<div id="wrapper">
+		<div id="setting" class="on">
+			<fieldset>
+				<legend>Setting</legend>
+				<label>URL1：<input type="text" id="url1" value="jm1cmEykt_E"></label>
+				<label>URL2：<input type="text" id="url2" value="5h6PF8Y-s50"></label>
+				<label>時差：<input type="numbeer" id="jisa" value="2" step="1"></label>
+				<label>開始：<input type="number" id="s" value="1380" step="1" min="0"></label>
+				<div class="startBtnWrap">
+					<button type="button" id="init">Start</button>
+					<button type="button" id="reset">Reset</button>
+				</div>
+			</fieldset>
+		</div>
+		<header>
+			<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1280.000000pt" height="1266.000000pt" viewBox="0 0 1280.000000 1266.000000" preserveAspectRatio="xMidYMid meet" id="reload">
+					<g transform="translate(0.000000,1266.000000) scale(0.100000,-0.100000)" fill="#ffffff" stroke="none">
+						<path d="M6130 12653 c-1136 -47 -2253 -397 -3200 -1002 -1163 -744 -2048
+				-1830 -2525 -3096 -433 -1150 -520 -2406 -249 -3595 169 -740 463 -1430 880
+				-2063 765 -1161 1874 -2034 3189 -2509 977 -354 2044 -467 3080 -328 1388 186
+				2694 829 3675 1810 129 129 1201 1318 1207 1339 2 8 -1951 1746 -1964 1746 -5
+				0 -200 -214 -433 -475 -596 -668 -655 -732 -782 -847 -599 -539 -1284 -857
+				-2083 -964 -292 -39 -726 -36 -1025 7 -1069 153 -1996 719 -2605 1589 -746
+				1066 -863 2457 -305 3632 359 755 979 1375 1745 1744 387 186 728 287 1180
+				351 213 29 712 33 927 5 649 -82 1206 -288 1723 -638 269 -182 481 -372 781
+				-704 153 -168 162 -181 146 -196 -9 -9 -287 -254 -617 -544 -330 -291 -601
+				-532 -603 -537 -2 -4 4 -8 13 -8 8 0 305 -68 658 -150 353 -83 851 -200 1107
+				-260 256 -60 726 -170 1045 -245 319 -75 831 -195 1138 -267 307 -71 560 -128
+				562 -126 3 2 -47 960 -110 2129 -63 1168 -119 2221 -126 2339 -6 118 -14 245
+				-17 282 l-7 67 -520 -459 c-286 -252 -522 -459 -525 -459 -3 -1 -66 67 -140
+				150 -194 219 -425 458 -575 595 -1250 1147 -2934 1759 -4645 1687z" />
+					</g>
+				</svg>
+		</header>
+		<main>
+			<div class="youtube">
+				<div id="ytplayer0"></div>
+			</div>
+			<div class="youtube">
+				<div id="ytplayer1"></div>
+			</div>
+		</main>
+		<footer>
+			<ul>
+				<li id="start">start</li>
+				<li id="stop">stop</li>
+			</ul>
+		</footer>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+</body>
+</html>

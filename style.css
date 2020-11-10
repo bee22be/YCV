@@ -1,0 +1,129 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html,
+body,
+#wrapper {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: #000;
+	overflow: hidden;
+}
+
+html {
+	touch-action: manipulation;
+	font-family: system-ui;
+}
+
+header {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	height: 42px;
+	width: 100%;
+	text-align: right;
+}
+header svg {
+	height: 20px;
+	width: 20px;
+	margin: 10px;
+	opacity: .3;
+	cursor: pointer;
+}
+header svg:active,
+header svg:hover {
+	opacity: 0.8;
+}
+
+#setting {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	color: #fff;
+	display: none;
+  align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+#setting.on {
+	display: flex;
+}
+#setting fieldset {
+	padding: 10px;
+}
+#setting label {
+	display: block;
+	margin-bottom: 5px;
+}
+.startBtnWrap {
+	padding: 10px;
+}
+#setting button {
+	cursor: pointer;
+	padding: 4px 12px;
+	margin: 0 10px;
+}
+
+footer {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	height: 42px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+footer.on {
+	display: block;
+}
+footer ul{
+	display: flex;
+}
+footer li {
+	cursor: pointer;
+	list-style: none;
+	flex:1;
+	text-align: center;
+	line-height: 42px;
+	background-color: #111;
+	color: #eee;
+	opacity: 0.2;
+}
+footer li:active,
+footer li:hover {
+	opacity: 0.8;
+}
+
+#wrapper main {
+	height: 100%;
+	display: flex;
+  align-items: center;
+	justify-content: center;
+}
+
+@media (orientation: portrait) {
+  #wrapper main {
+		flex-flow: column;
+  }
+}
+
+.youtube {
+	position: relative;
+	width: 100%;
+	padding-top: 56.25%;
+}
+.youtube iframe {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100% !important;
+	height: 100% !important;
+}

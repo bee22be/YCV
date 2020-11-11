@@ -52,6 +52,10 @@ header {
   text-align: right;
 }
 header svg {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
   height: 20px;
   width: 20px;
   margin: 10px;
@@ -66,10 +70,11 @@ header li {
   display: none;
   position: absolute;
   opacity: 0;
-  top: 0;
-  height: 100vh;
+  top: 42px;
+  height: calc(100vh - 84px);
   width: 32px;
   background-color: #fff;
+  cursor: pointer;
 }
 header li.on {
   display: block;

@@ -69,54 +69,39 @@ $(function () {
     players[1].pauseVideo();
   }
 
-  document.querySelector("#start").addEventListener(
-    "click",
-    function () {
-      adjustTimeDetail();
-      playYT();
-    },
-    false
-  );
-  document.querySelector("#stop").addEventListener(
-    "click",
-    function () {
-      pauseYT();
-    },
-    false
-  );
-  document.querySelector("#reload").addEventListener(
-    "click",
-    function () {
-      location.reload();
-    },
-    false
-  );
+  $("#start").on("click", function () {
+    playYT();
+  });
+  $("#stop").on("click", function () {
+    adjustTimeDetail();
+    pauseYT();
+  });
+  $("#reload").on("click", function () {
+    location.reload();
+  });
   $("#reset").on("click", function () {
     $("#setting input").each(function () {
       localStorage.removeItem("YCV__" + this.id);
     });
     location.reload();
   });
-  document.querySelector("#init").addEventListener(
-    "click",
-    function () {
-      const startTime1 = document.querySelector("#s").value - 0;
-      const startTime2 =
-        document.querySelector("#s").value -
-        0 +
-        (document.querySelector("#jisa1").value - 0);
-      console.log(startTime1, startTime2);
-      initYT(
-        [
-          document.querySelector("#url1").value,
-          document.querySelector("#url2").value,
-        ],
-        [startTime1, startTime2]
-      );
-      document.querySelector("#setting").classList.remove("on");
-    },
-    false
-  );
+
+  $("#init").on("click", function () {
+    const startTime1 = document.querySelector("#s").value - 0;
+    const startTime2 =
+      document.querySelector("#s").value -
+      0 +
+      (document.querySelector("#jisa1").value - 0);
+    console.log(startTime1, startTime2);
+    initYT(
+      [
+        document.querySelector("#url1").value,
+        document.querySelector("#url2").value,
+      ],
+      [startTime1, startTime2]
+    );
+    document.querySelector("#setting").classList.remove("on");
+  });
 
   const init = function () {
     $("#setting input").each(function () {

@@ -7,6 +7,7 @@ $(function () {
 
   // Replace the 'ytplayer' element with an <iframe> and
   // YouTube player after the API code downloads.
+  const isIOS = /iP(hone|(o|a)d)/.test(navigator.userAgent);
   var player;
   var player2;
   let players = [];
@@ -48,7 +49,7 @@ $(function () {
       setTimeout(() => {
         players[0].playVideo();
         players[1].playVideo();
-        players[0].unMute();
+        !isIOS && players[0].unMute();
         document.querySelector("footer").classList.add("on");
         document.querySelector("#ff").classList.add("on");
         document.querySelector("#rew").classList.add("on");

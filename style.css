@@ -80,8 +80,7 @@ header li {
 header li.on {
   display: block;
 }
-header li:active,
-header li:hover {
+header li:active {
   opacity: 0.2;
   animation: fadeOut 0.5s ease-in-out forwards;
 }
@@ -157,7 +156,6 @@ footer li {
   color: #eee;
   opacity: 0.2;
 }
-footer li:active,
-footer li:hover {
+footer li:active {
   opacity: 0.8;
 }

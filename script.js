@@ -8,7 +8,7 @@ $(function () {
   // Replace the 'ytplayer' element with an <iframe> and
   // YouTube player after the API code downloads.
   var player;
-	var player2;
+  var player2;
   let players = [];
   const YToption = {
     height: "360",
@@ -46,9 +46,15 @@ $(function () {
       players[0].pauseVideo();
       players[1].pauseVideo();
       setTimeout(() => {
+        players[0].unMute();
         players[0].playVideo();
         players[1].playVideo();
         document.querySelector("footer").classList.add("on");
+        document.querySelector("#ff").classList.add("on");
+        document.querySelector("#rew").classList.add("on");
+        setInterval(() => {
+          localStorage["YCV__s"] = Math.floor(players[0].getCurrentTime());
+        }, 1000);
       }, 2000);
     }, 2000);
   }
@@ -82,13 +88,13 @@ $(function () {
       location.reload();
     },
     false
-	);
-	$('#reset').on('click',function(){
-		$("#setting input").each(function(){
-			localStorage.removeItem("YCV__" + this.id);
-		});
-		location.reload();
-	})
+  );
+  $("#reset").on("click", function () {
+    $("#setting input").each(function () {
+      localStorage.removeItem("YCV__" + this.id);
+    });
+    location.reload();
+  });
   document.querySelector("#init").addEventListener(
     "click",
     function () {
@@ -111,15 +117,28 @@ $(function () {
   );
 
   const init = function () {
-		$("#setting input").each(function(){
-	    localStorage["YCV__" + this.id] &&
+    $("#setting input").each(function () {
+      localStorage["YCV__" + this.id] &&
         $("#" + this.id).val(localStorage["YCV__" + this.id]);
-		})
+    });
   };
 
   $("#setting input").on("change keyup", function () {
     localStorage["YCV__" + $(this).attr("id")] = $(this).val();
   });
+
+  $("#rew").on("click", function () {
+    adjustTime(5);
+  });
+  $("#ff").on("click", function () {
+    adjustTime(-5);
+  });
+
+  function adjustTime(val) {
+    const num = Math.floor(players[0].getCurrentTime()) + val;
+    players[0].seekTo(num);
+    players[1].seekTo(num + ($("#jisa").val() - 0));
+  }
 
   const target = document.querySelector("main");
   var passiveSupported = false;

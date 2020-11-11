@@ -126,8 +126,8 @@ $(function () {
     players[0].seekTo(num);
     players[1].seekTo(num + ($("#jisa1").val() - 0));
   }
-  function adjustTimeDetail(val = 0) {
-    const num = players[0].getCurrentTime() + val;
+  function adjustTimeDetail() {
+    const num = players[0].getCurrentTime();
     players[0].seekTo(num);
     players[1].seekTo(num + ($("#jisa1").val() - 0));
   }

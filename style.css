@@ -73,7 +73,7 @@ header li {
   opacity: 0;
   top: 42px;
   height: calc(100vh - 84px);
-  width: 32px;
+  width: 60px;
   background-color: #fff;
   cursor: pointer;
 }

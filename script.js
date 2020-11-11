@@ -46,9 +46,9 @@ $(function () {
       players[0].pauseVideo();
       players[1].pauseVideo();
       setTimeout(() => {
-        players[0].unMute();
         players[0].playVideo();
         players[1].playVideo();
+        players[0].unMute();
         document.querySelector("footer").classList.add("on");
         document.querySelector("#ff").classList.add("on");
         document.querySelector("#rew").classList.add("on");

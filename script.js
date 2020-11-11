@@ -72,6 +72,7 @@ $(function () {
   document.querySelector("#start").addEventListener(
     "click",
     function () {
+      adjustTimeDetail();
       playYT();
     },
     false
@@ -137,6 +138,11 @@ $(function () {
 
   function adjustTime(val) {
     const num = Math.floor(players[0].getCurrentTime()) + val;
+    players[0].seekTo(num);
+    players[1].seekTo(num + ($("#jisa").val() - 0));
+  }
+  function adjustTimeDetail(val = 0) {
+    const num = players[0].getCurrentTime() + val;
     players[0].seekTo(num);
     players[1].seekTo(num + ($("#jisa").val() - 0));
   }

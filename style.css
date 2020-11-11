@@ -18,6 +18,7 @@ html {
   font-family: system-ui;
 }
 #wrapper main {
+  pointer-events: none;
   height: 100%;
   display: flex;
   align-items: center;
@@ -144,6 +145,7 @@ footer.on {
 }
 footer ul {
   display: flex;
+  background-color: #000;
 }
 footer li {
   cursor: pointer;

@@ -104,7 +104,7 @@ $(function () {
       const startTime2 =
         document.querySelector("#s").value -
         0 +
-        (document.querySelector("#jisa").value - 0);
+        (document.querySelector("#jisa1").value - 0);
       console.log(startTime1, startTime2);
       initYT(
         [
@@ -139,12 +139,12 @@ $(function () {
   function adjustTime(val) {
     const num = Math.floor(players[0].getCurrentTime()) + val;
     players[0].seekTo(num);
-    players[1].seekTo(num + ($("#jisa").val() - 0));
+    players[1].seekTo(num + ($("#jisa1").val() - 0));
   }
   function adjustTimeDetail(val = 0) {
     const num = players[0].getCurrentTime() + val;
     players[0].seekTo(num);
-    players[1].seekTo(num + ($("#jisa").val() - 0));
+    players[1].seekTo(num + ($("#jisa1").val() - 0));
   }
 
   const target = document.querySelector("main");

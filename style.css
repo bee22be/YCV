@@ -163,7 +163,6 @@ footer.on {
 }
 footer ul {
   display: flex;
-  background-color: #000;
 }
 footer li {
   cursor: pointer;

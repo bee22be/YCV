@@ -71,24 +71,32 @@ header svg:active,
 header svg:hover {
   opacity: 0.8;
 }
+header ul {
+  user-select: none;
+}
 header li {
   display: none;
   position: absolute;
   opacity: 0;
   top: 42px;
-  height: calc(100vh - 84px);
+  height: calc(50vh - 42px);
   width: 60px;
   background-color: #fff;
   cursor: pointer;
 }
-header li.on {
+header li#ff2,
+header li#rew2 {
+  top: calc(50vh);
+}
+header .on li {
   display: block;
 }
 header li:active {
   opacity: 0.2;
   animation: fadeOut 0.5s ease-in-out forwards;
 }
-header li#rew {
+header li#rew,
+header li#rew2 {
   right: 0;
 }
 @keyframes fadeOut {
@@ -154,6 +162,7 @@ footer {
   bottom: 0;
   width: 100%;
   opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 footer:hover {
   opacity: 1;
@@ -174,7 +183,11 @@ footer li {
   background-color: #111;
   color: #eee;
   opacity: 0.2;
+  transition: opacity 0.3s ease-in-out;
 }
-footer li:active {
+footer li:hover {
   opacity: 0.8;
+}
+footer li:active{
+  opacity: 1;
 }

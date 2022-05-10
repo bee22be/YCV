@@ -51,10 +51,10 @@ $(function () {
         for( var i in players ) {
           players[i].playVideo();
         }
-        !isIOS && players[0].unMute();
+        players[0].unMute();
+        // !isIOS && players[0].unMute();
         document.querySelector("footer").classList.add("on");
-        document.querySelector("#ff").classList.add("on");
-        document.querySelector("#rew").classList.add("on");
+        document.querySelector("#functions").classList.add("on");
         setInterval(() => {
           localStorage["YCV__s"] = Math.floor(players[0].getCurrentTime());
         }, 1000);
@@ -120,9 +120,15 @@ $(function () {
   });
 
   $("#rew").on("click", function () {
-    adjustTime(5);
+    adjustTime(30);
   });
   $("#ff").on("click", function () {
+    adjustTime(-30);
+  });
+  $("#rew2").on("click", function () {
+    adjustTime(5);
+  });
+  $("#ff2").on("click", function () {
     adjustTime(-5);
   });
 

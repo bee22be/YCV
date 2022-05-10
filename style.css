@@ -20,22 +20,17 @@ html {
 #wrapper main {
   pointer-events: none;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+#wrapper main[play-state='stop']{
+  pointer-events: initial;
 }
 @media (orientation: portrait) {
   #wrapper main {
     flex-flow: column;
   }
 }
-#wrapper main.l-4{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
 .youtube {
   position: relative;
-  width: 100%;
   aspect-ratio: 16/9;
 }
 .youtube iframe {
@@ -190,4 +185,54 @@ footer li:hover {
 }
 footer li:active{
   opacity: 1;
+}
+
+#muteState {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+}
+#muteState li{
+  aspect-ratio: 16/9;
+  width: 20vw;
+  background-color: #fff;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+#muteState li:active{
+  opacity: .5;
+}
+
+
+.grid-2,
+.grid-3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.grid-2 > *,
+.grid-3 > * {
+  width: 50%;
+}
+.grid-4{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+}
+@media (orientation: portrait) {
+  #muteState,
+  #muteState li {
+    width: 40vw;
+  }
+  .grid-2 {
+    flex-flow: column;
+  }
+  .grid-2 > *,
+  .grid-3 > *{
+    width: 100%;
+  }
 }

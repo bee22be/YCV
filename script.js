@@ -9,6 +9,7 @@ $(function () {
   // YouTube player after the API code downloads.
   const isIOS = /iP(hone|(o|a)d)/.test(navigator.userAgent);
   let players = [];
+  let mutePlayerNum = 0;
   const YToption = {
     height: "360",
     width: "640",
@@ -51,8 +52,8 @@ $(function () {
         for( var i in players ) {
           players[i].playVideo();
         }
-        players[0].unMute();
-        // !isIOS && players[0].unMute();
+        players[mutePlayerNum].unMute();
+        // !isIOS && players[mutePlayerNum].unMute();
         document.querySelector("footer").classList.add("on");
         document.querySelector("#functions").classList.add("on");
         setInterval(() => {
@@ -62,15 +63,18 @@ $(function () {
     }, 2000);
   }
   function playYT() {
-    players[0].unMute();
+    players[mutePlayerNum].unMute();
     for( var i in players ) {
       players[i].playVideo();
     }
+    // document.querySelector("main").dataset.playState = "play";
   }
   function pauseYT() {
     for( var i in players ) {
       players[i].pauseVideo();
     }
+    // document.querySelector("main").dataset.playState = "stop";
+    play-state
   }
 
   $("#start").on("click", function () {
@@ -93,17 +97,24 @@ $(function () {
   $("#init").on("click", function () {
     const urlEl = document.querySelectorAll(".url");
     let urls = [];
-    let html = "";
+    let htmlYt = "";
+    let htmlMute = "";
     let i = 0
     for (i; i < urlEl.length; i++) {
       if(urlEl[i].value !== ''){
         urls.push(urlEl[i].value);
-        html += `<div class="youtube"><div id="ytplayer${i}"></div></div>`
+        htmlYt += `<div class="youtube"><div id="ytplayer${i}"></div></div>`
+        htmlMute += `<li class="muteBtn" data-id="${i}"></li>`
       }
     }
-    document.querySelector("main").innerHTML = html;
-    document.querySelector("main").className = 'l-'+i;
-
+    document.querySelector("main").innerHTML = htmlYt;
+    document.querySelector("#muteState").innerHTML = htmlMute;
+    $('#muteState,main').addClass('grid-'+$('.youtube').length);
+    // document.querySelector("#wrapper").className = 'l-'+document.querySelectorAll(".youtube").length;
+    $(".muteBtn").on("click", function () {
+      mutePlayerNum = $(this).data('id') - 0;
+      adjustMute()
+    });
     initYT(urls);
     document.querySelector("#setting").classList.remove("on");
   });
@@ -131,6 +142,13 @@ $(function () {
   $("#ff2").on("click", function () {
     adjustTime(-5);
   });
+
+  function adjustMute(){
+    for( var i in players ) {
+      players[i].mute();
+    }
+    players[mutePlayerNum].unMute();
+  }
 
   function adjustTime(val) {
     const num = Math.floor(players[0].getCurrentTime()) + val;

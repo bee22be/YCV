@@ -8,8 +8,6 @@ $(function () {
   // Replace the 'ytplayer' element with an <iframe> and
   // YouTube player after the API code downloads.
   const isIOS = /iP(hone|(o|a)d)/.test(navigator.userAgent);
-  var player;
-  var player2;
   let players = [];
   const YToption = {
     height: "360",
@@ -30,25 +28,29 @@ $(function () {
   function onYouTubePlayerAPIReady() {
     //onload function
   }
-  function initYT(YTarray = ["afe", "afe-s5a0"], starts = [1380, 1382]) {
+  function initYT(YTarray = ["afe", "afe-s5a0"]) {
     for (let i = 0; i < YTarray.length; i++) {
       console.log(YTarray[i]);
       let op = YToption;
+      const start = document.querySelector("#s").value -
+      0 +
+      (document.querySelector("#jisa-"+i).value - 0);
       op["videoId"] = YTarray[i];
-      op["playerVars"]["start"] = starts[i];
-      console.log(op);
+      op["playerVars"]["start"] = start;
       players[i] = new YT.Player("ytplayer" + i, op);
+      console.log(players);
     }
     setTimeout(() => {
-      players[0].mute();
-      players[1].mute();
-      players[0].playVideo();
-      players[1].playVideo();
-      players[0].pauseVideo();
-      players[1].pauseVideo();
+      for( var i in players ) {
+        players[i].mute();
+        players[i].playVideo();
+        players[i].pauseVideo();
+      }
+      
       setTimeout(() => {
-        players[0].playVideo();
-        players[1].playVideo();
+        for( var i in players ) {
+          players[i].playVideo();
+        }
         !isIOS && players[0].unMute();
         document.querySelector("footer").classList.add("on");
         document.querySelector("#ff").classList.add("on");
@@ -61,12 +63,14 @@ $(function () {
   }
   function playYT() {
     players[0].unMute();
-    players[0].playVideo();
-    players[1].playVideo();
+    for( var i in players ) {
+      players[i].playVideo();
+    }
   }
   function pauseYT() {
-    players[0].pauseVideo();
-    players[1].pauseVideo();
+    for( var i in players ) {
+      players[i].pauseVideo();
+    }
   }
 
   $("#start").on("click", function () {
@@ -87,19 +91,20 @@ $(function () {
   });
 
   $("#init").on("click", function () {
-    const startTime1 = document.querySelector("#s").value - 0;
-    const startTime2 =
-      document.querySelector("#s").value -
-      0 +
-      (document.querySelector("#jisa1").value - 0);
-    console.log(startTime1, startTime2);
-    initYT(
-      [
-        document.querySelector("#url1").value,
-        document.querySelector("#url2").value,
-      ],
-      [startTime1, startTime2]
-    );
+    const urlEl = document.querySelectorAll(".url");
+    let urls = [];
+    let html = "";
+    let i = 0
+    for (i; i < urlEl.length; i++) {
+      if(urlEl[i].value !== ''){
+        urls.push(urlEl[i].value);
+        html += `<div class="youtube"><div id="ytplayer${i}"></div></div>`
+      }
+    }
+    document.querySelector("main").innerHTML = html;
+    document.querySelector("main").className = 'l-'+i;
+
+    initYT(urls);
     document.querySelector("#setting").classList.remove("on");
   });
 
@@ -123,13 +128,17 @@ $(function () {
 
   function adjustTime(val) {
     const num = Math.floor(players[0].getCurrentTime()) + val;
-    players[0].seekTo(num);
-    players[1].seekTo(num + ($("#jisa1").val() - 0));
+    for( var i in players ) {
+      players[i].seekTo(num + ($("#jisa-"+i).val() - 0));
+    }
   }
   function adjustTimeDetail() {
     const num = players[0].getCurrentTime();
-    players[0].seekTo(num);
-    players[1].seekTo(num + ($("#jisa1").val() - 0));
+    for( var i in players ) {
+      players[i].seekTo(num + ($("#jisa-"+i).val() - 0));
+    }
+    // players[0].seekTo(num);
+    // players[1].seekTo(num + ($("#jisa-1").val() - 0));
   }
 
   const target = document.querySelector("main");

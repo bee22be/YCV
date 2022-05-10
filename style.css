@@ -29,10 +29,14 @@ html {
     flex-flow: column;
   }
 }
+#wrapper main.l-4{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 .youtube {
   position: relative;
   width: 100%;
-  padding-top: 56.25%;
+  aspect-ratio: 16/9;
 }
 .youtube iframe {
   position: absolute;
@@ -119,6 +123,8 @@ header li#rew {
 #setting label {
   display: block;
   margin-bottom: 5px;
+  vertical-align: bottom;
+  font-size: 12px;
 }
 .startBtnWrap {
   padding: 10px;
@@ -128,7 +134,16 @@ header li#rew {
   padding: 4px 12px;
   margin: 0 10px;
 }
-
+.jisa {
+  width: 40px;
+}
+.labelWrap {
+  display: flex;
+  flex: 2;
+}
+#setting .labelWrap label{
+  display: inline-block;
+}
 /*------------[footer]------------*/
 footer {
   display: none;
@@ -138,6 +153,10 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
+  opacity: 0;
+}
+footer:hover {
+  opacity: 1;
 }
 footer.on {
   display: block;

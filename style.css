@@ -156,11 +156,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  opacity: 0;
   transition: opacity 0.3s ease-in-out;
-}
-footer:hover {
-  opacity: 1;
 }
 footer.on {
   display: block;
@@ -177,14 +173,11 @@ footer li {
   line-height: 42px;
   background-color: #111;
   color: #eee;
-  opacity: 0.2;
+  opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-footer li:hover {
+footer li.hover {
   opacity: 0.8;
-}
-footer li:active{
-  opacity: 1;
 }
 
 #muteState {
@@ -201,7 +194,7 @@ footer li:active{
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
 }
-#muteState li:active{
+#muteState li.hover{
   opacity: .5;
 }
 

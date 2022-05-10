@@ -74,13 +74,15 @@ $(function () {
       players[i].pauseVideo();
     }
     // document.querySelector("main").dataset.playState = "stop";
-    play-state
+    // play-state
   }
 
   $("#start").on("click", function () {
+    addHover($(this));
     playYT();
   });
   $("#stop").on("click", function () {
+    addHover($(this));
     adjustTimeDetail();
     pauseYT();
   });
@@ -112,6 +114,7 @@ $(function () {
     $('#muteState,main').addClass('grid-'+$('.youtube').length);
     // document.querySelector("#wrapper").className = 'l-'+document.querySelectorAll(".youtube").length;
     $(".muteBtn").on("click", function () {
+      addHover($(this));
       mutePlayerNum = $(this).data('id') - 0;
       adjustMute()
     });
@@ -143,6 +146,14 @@ $(function () {
     adjustTime(-5);
   });
 
+  function addHover(tgt){
+    if(!tgt.hasClass('hover')){
+      tgt.addClass('hover');
+      setTimeout(function(){
+        tgt.removeClass('hover');
+      }, 200)
+    }
+  }
   function adjustMute(){
     for( var i in players ) {
       players[i].mute();

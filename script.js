@@ -8,6 +8,7 @@ $(function () {
   // Replace the 'ytplayer' element with an <iframe> and
   // YouTube player after the API code downloads.
   const isIOS = /iP(hone|(o|a)d)/.test(navigator.userAgent);
+
   let players = [];
   let mutePlayerNum = 0;
   const YToption = {
@@ -29,9 +30,29 @@ $(function () {
   function onYouTubePlayerAPIReady() {
     //onload function
   }
+  const ag2getParameterByName = function(name, url){
+    if(!url.match(/^http(s):\/\//)) return url;
+    //ULRをクエリで分割して配列化
+    let queryString = url.split('?');
+    //URLにクエリがあった場合
+    if(queryString.length >= 2){
+      //複数のパラメーターがあれば分割して配列化
+      let paras = queryString[1].split('&');
+      //指定したパラメーターの値を取得
+      for(let i = 0; i < paras.length; i++){
+        //パラメーターを名前と値で分割
+        let eachPara = paras[i].split('=');
+        //パラメーター名が指定のものと一致したら値を返して関数処理を終了
+        if(eachPara[0] == name) return eachPara[1];
+      }
+    }
+    //URLに指定のパラメーターが無い場合はnullを返す
+    return null;
+  };
+  
   function initYT(YTarray = ["afe", "afe-s5a0"]) {
     for (let i = 0; i < YTarray.length; i++) {
-      console.log(YTarray[i]);
+      // console.log(YTarray[i]);
       let op = YToption;
       const start = document.querySelector("#s").value -
       0 +
@@ -39,7 +60,7 @@ $(function () {
       op["videoId"] = YTarray[i];
       op["playerVars"]["start"] = start;
       players[i] = new YT.Player("ytplayer" + i, op);
-      console.log(players);
+      // console.log(players);
     }
     setTimeout(() => {
       for( var i in players ) {
@@ -104,7 +125,7 @@ $(function () {
     let i = 0
     for (i; i < urlEl.length; i++) {
       if(urlEl[i].value !== ''){
-        urls.push(urlEl[i].value);
+        urls.push(ag2getParameterByName('v',urlEl[i].value));
         htmlYt += `<div class="youtube"><div id="ytplayer${i}"></div></div>`
         htmlMute += `<li class="muteBtn" data-id="${i}"></li>`
       }
